@@ -6,6 +6,7 @@ resource "aws_lb_listener" "this" {
   protocol          = var.protocol
   ssl_policy        = var.ssl_policy
 
+
   dynamic "default_action" {
     for_each = var.default_action_type == "redirect" ? [1] : [0]
 

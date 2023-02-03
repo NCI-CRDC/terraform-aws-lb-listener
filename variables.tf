@@ -26,6 +26,18 @@ variable "program" {
   }
 }
 
+variable "alpn_policy" {
+  type        = string
+  description = "application-layer protocol negotiation (alpn) policy - can be set if protocol is 'TLS'"
+  default     = null
+}
+
+variable "certificate_arn" {
+  type        = string
+  description = "arn of the certificate for HTTPS listeners, not needed for HTTP listeners"
+  default     = null
+}
+
 variable "default_action_type" {
   type        = string
   description = "type of routing action - valid values are forward, redirect, or fixed-response"
@@ -51,6 +63,11 @@ variable "fixed_response_status_code" {
 variable "load_balancer_arn" {
   type        = string
   description = "arn of the load balancer to associate this listener to"
+}
+
+variable "port" {
+  type        = number
+  description = "port on which the load balancer is listening"
 }
 
 variable "protocol" {
@@ -80,4 +97,10 @@ variable "redirect_status_code" {
   type        = string
   description = "(required if type = redirect) the http redirect code"
   default     = "HTTP_301"
+}
+
+variable "ssl_policy" {
+  type        = string
+  description = "Name of the SSL Policy for the listener - required if protocol is 'HTTPS' or 'TLS'"
+  default     = "ELBSecurityPolicy-2016-08"
 }
