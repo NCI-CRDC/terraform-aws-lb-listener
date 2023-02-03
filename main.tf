@@ -7,10 +7,10 @@ resource "aws_lb_listener" "this" {
   ssl_policy        = var.ssl_policy
 
   dynamic "default_action" {
-    for_each = var.type == "redirect" ? [1] : [0]
+    for_each = var.default_action_type == "redirect" ? [1] : [0]
 
     content {
-      type = var.type
+      type = var.default_action_type
 
       redirect {
         port        = var.redirect_port
@@ -22,10 +22,10 @@ resource "aws_lb_listener" "this" {
   }
 
   dynamic "default_action" {
-    for_each = var.type == "fixed-reponse" ? [1] : [0]
+    for_each = var.default_action_type == "fixed-reponse" ? [1] : [0]
 
     content {
-      type = var.type
+      type = var.default_action_type
 
       fixed_response {
         content_type = var.fixed_response_content_type
