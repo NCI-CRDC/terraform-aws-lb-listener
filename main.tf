@@ -9,9 +9,9 @@ resource "aws_lb_listener" "this" {
   dynamic "default_action" {
     for_each = var.type == "redirect" ? [1] : [0]
 
-    type = "redirect"
-
     content {
+      type = var.type
+
       redirect {
         port        = var.redirect_port
         path        = var.redirect_path
@@ -20,28 +20,18 @@ resource "aws_lb_listener" "this" {
       }
     }
   }
-}
 
-variable "redirect_path" {
-  type        = string
-  description = "(required if type = redirect) absolute path, starting with the leading '/''"
-  default     = null
-}
+  dynamic "default_action" {
+    for_each = var.type == "fixed-reponse" ? [1] : [0]
 
-variable "redirect_port" {
-  type        = string
-  description = "(required if type = redirect) the redirect port"
-  default     = "443"
-}
+    content {
+      type = var.type
 
-variable "redirect_protocol" {
-  type        = string
-  description = "(required if type = redirect) the redirect protocol between 1 and 65535"
-  default     = "HTTPS"
-}
-
-variable "redirect_status_code" {
-  type        = string
-  description = "(required if type = redirect) the http redirect code"
-  default     = "HTTP_301"
+      fixed_response {
+        content_type = var.fixed_response_content_type
+        message_body = var.fixed_response_message_body
+        status_code  = var.fixed_response_status_code
+      }
+    }
+  }
 }

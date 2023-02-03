@@ -31,6 +31,23 @@ variable "default_action_type" {
   description = "type of routing action - valid values are forward, redirect, or fixed-response"
 }
 
+variable "fixed_response_content_type" {
+  type        = string
+  description = "(required if type = fixed_response) valid values are text/plain, text/css, text/html, application/javascript and application/json"
+  default     = "text/plain"
+}
+
+variable "fixed_response_message_body" {
+  type        = string
+  description = "(required if type = fixed_response)} message to return of request does not meet conditions of any listener rules"
+  default     = "The application is not available at this time. Please try again soon."
+}
+
+variable "fixed_response_status_code" {
+  description = "(required if type = fixed_response)} message to return of request does not meet conditions of any listener rules"
+  default     = "503"
+}
+
 variable "load_balancer_arn" {
   type        = string
   description = "arn of the load balancer to associate this listener to"
@@ -39,4 +56,28 @@ variable "load_balancer_arn" {
 variable "protocol" {
   type        = string
   description = "protocol for connections from clients to the load balancer - for alb, valid values are 'HTTP' and 'HTTPS'"
+}
+
+variable "redirect_path" {
+  type        = string
+  description = "(required if type = redirect) absolute path, starting with the leading '/''"
+  default     = null
+}
+
+variable "redirect_port" {
+  type        = string
+  description = "(required if type = redirect) the redirect port"
+  default     = "443"
+}
+
+variable "redirect_protocol" {
+  type        = string
+  description = "(required if type = redirect) the redirect protocol between 1 and 65535"
+  default     = "HTTPS"
+}
+
+variable "redirect_status_code" {
+  type        = string
+  description = "(required if type = redirect) the http redirect code"
+  default     = "HTTP_301"
 }
