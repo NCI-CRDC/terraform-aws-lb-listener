@@ -7,7 +7,4 @@
 module "this" {
   source = "../"
 
-  app         = "example"
-  environment = "dev"
-  program     = "example"
 }
