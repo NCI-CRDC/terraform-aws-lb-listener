@@ -29,9 +29,9 @@ resource "aws_lb_listener" "this" {
       type = var.default_action_type
 
       fixed_response {
-        content_type = var.fixed_response_content_type
-        message_body = var.fixed_response_message_body
-        status_code  = var.fixed_response_status_code
+        content_type = var.default_action_type == "fixed-reponse" ? var.fixed_response_content_type : null 
+        message_body = var.default_action_type == "fixed-reponse" ? var.fixed_response_message_body : null 
+        status_code  = var.default_action_type == "fixed-reponse" ? var.fixed_response_status_code : null
       }
     }
   }
