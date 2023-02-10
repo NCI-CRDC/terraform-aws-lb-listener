@@ -33,16 +33,13 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_alpn_policy"></a> [alpn\_policy](#input\_alpn\_policy) | application-layer protocol negotiation (alpn) policy - can be set if protocol is 'TLS' | `string` | `null` | no |
-| <a name="input_app"></a> [app](#input\_app) | the name of the application expressed as an acronym | `string` | n/a | yes |
 | <a name="input_certificate_arn"></a> [certificate\_arn](#input\_certificate\_arn) | arn of the certificate for HTTPS listeners, not needed for HTTP listeners | `string` | `null` | no |
 | <a name="input_default_action_type"></a> [default\_action\_type](#input\_default\_action\_type) | type of routing action - valid values are forward, redirect, or fixed-response | `string` | n/a | yes |
-| <a name="input_env"></a> [env](#input\_env) | the target tier ('dev', 'qa', 'stage', or 'prod'.) | `string` | n/a | yes |
 | <a name="input_fixed_response_content_type"></a> [fixed\_response\_content\_type](#input\_fixed\_response\_content\_type) | (required if type = fixed\_response) valid values are text/plain, text/css, text/html, application/javascript and application/json | `string` | `null` | no |
 | <a name="input_fixed_response_message_body"></a> [fixed\_response\_message\_body](#input\_fixed\_response\_message\_body) | (required if type = fixed\_response)} message to return of request does not meet conditions of any listener rules | `string` | `"The application is not available at this time. Please try again soon."` | no |
 | <a name="input_fixed_response_status_code"></a> [fixed\_response\_status\_code](#input\_fixed\_response\_status\_code) | (required if type = fixed\_response)} message to return of request does not meet conditions of any listener rules | `string` | `"503"` | no |
 | <a name="input_load_balancer_arn"></a> [load\_balancer\_arn](#input\_load\_balancer\_arn) | arn of the load balancer to associate this listener to | `string` | n/a | yes |
 | <a name="input_port"></a> [port](#input\_port) | port on which the load balancer is listening | `number` | n/a | yes |
-| <a name="input_program"></a> [program](#input\_program) | the program associated with the application | `string` | n/a | yes |
 | <a name="input_protocol"></a> [protocol](#input\_protocol) | protocol for connections from clients to the load balancer - for alb, valid values are 'HTTP' and 'HTTPS' | `string` | n/a | yes |
 | <a name="input_redirect_path"></a> [redirect\_path](#input\_redirect\_path) | (required if type = redirect) absolute path, starting with the leading '/'' | `string` | `null` | no |
 | <a name="input_redirect_port"></a> [redirect\_port](#input\_redirect\_port) | (required if type = redirect) the redirect port | `string` | `"443"` | no |
