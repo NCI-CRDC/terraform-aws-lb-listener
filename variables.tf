@@ -46,7 +46,7 @@ variable "default_action_type" {
 variable "fixed_response_content_type" {
   type        = string
   description = "(required if type = fixed_response) valid values are text/plain, text/css, text/html, application/javascript and application/json"
-  default     = "text/plain"
+  default     = null
 }
 
 variable "fixed_response_message_body" {
