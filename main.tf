@@ -11,7 +11,7 @@ resource "aws_lb_listener" "this" {
     for_each = var.default_action_type == "redirect" ? [1] : [0]
 
     content {
-      type = var.default_action_type
+      type = "redirect"
 
       redirect {
         port        = var.redirect_port
@@ -26,12 +26,12 @@ resource "aws_lb_listener" "this" {
     for_each = var.default_action_type == "fixed-reponse" ? [1] : [0]
 
     content {
-      type = var.default_action_type
+      type = "fixed-response"
 
       fixed_response {
-        content_type = var.default_action_type == "fixed-reponse" ? var.fixed_response_content_type : null 
-        message_body = var.default_action_type == "fixed-reponse" ? var.fixed_response_message_body : null 
-        status_code  = var.default_action_type == "fixed-reponse" ? var.fixed_response_status_code : null
+        content_type = var.fixed_response_content_type
+        message_body = var.fixed_response_message_body 
+        status_code  = var.fixed_response_status_code
       }
     }
   }
